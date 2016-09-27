@@ -1,0 +1,42 @@
+import javax.swing.*;
+
+
+public class ExerciseTwo {
+
+    public static void main(String[] args) {
+        int time = -1;
+        int speed = -1;
+
+        while (time < 1 || speed < 0) {
+            try {
+                time = Integer.parseInt(JOptionPane.showInputDialog(null, "Please enter a positive integer for time (must be 1 or greater)"));
+                if (time < 1) {
+                    JOptionPane.showMessageDialog(null, "Time has to be 1 or greater!", "Error", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null, "Time has to be an integer that's 1 or greater", "Error", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
+            try {
+                speed = Integer.parseInt(JOptionPane.showInputDialog(null, "Please enter a positive integer for speed"));
+                if (speed < 0) {
+                    JOptionPane.showMessageDialog(null, "Speed has to be positive", "Error", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null, "Speed has to be an integer", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+
+        }
+        int counter = 1;
+        StringBuilder stringBuilder = new StringBuilder("Hours     Distance").append("\n");
+        stringBuilder.append("_______________").append("\n");
+        while (counter <= time) {
+            stringBuilder.append(counter).append("              ").append(counter * speed).append("\n");
+            counter++;
+        }
+        JOptionPane.showMessageDialog(null, stringBuilder.toString());
+    }
+}
