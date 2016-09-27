@@ -1,0 +1,32 @@
+
+import javax.swing.JOptionPane;
+import javax.swing.*;
+
+public class ExerciseeOne
+{
+    public static void main(String[] args)
+    {
+        int num = -1;
+        while(num < 0){
+            String input = JOptionPane.showInputDialog("Please enter a positive number");
+            try {
+                num = Integer.parseInt(input);
+
+                if(num < 0){
+                    JOptionPane.showMessageDialog(null, num + " isn't a positive number. Try again!");
+                }
+            }catch (NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null, input + " isn't a positive number. Try again!");
+                continue;
+            }
+
+        }
+        int sum = 0;
+        int counter = 0;
+        while (counter <= num) {
+            sum += counter;
+            counter++;
+        }
+        JOptionPane.showMessageDialog(null, "Sum: " + sum);
+    }
+}
