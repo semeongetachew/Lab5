@@ -1,0 +1,31 @@
+import javax.swing.*;
+import java.util.Random;
+
+
+public class Math {
+    public static void main(String [] args){
+        boolean correct = true;
+        int numCorrect = 0;
+        do {
+            Random random = new Random();
+            int lhs = random.nextInt(21);
+            int rhs = random.nextInt(21);
+            int result = lhs * rhs;
+
+            try {
+                int input = Integer.parseInt(JOptionPane.showInputDialog(null, lhs + " x " + rhs + " = ?"));
+                if(input != result){
+                    JOptionPane.showMessageDialog(null, "The correct answer was " + result);
+                    correct = false;
+                } else {
+                    numCorrect ++;
+                }
+            } catch (NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null, "The correct answer was " + result);
+                correct = false;
+            }
+        } while (correct);
+
+        JOptionPane.showMessageDialog(null, "You solved " + numCorrect + " correctly!");
+    }
+}
