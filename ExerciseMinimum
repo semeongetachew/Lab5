@@ -1,0 +1,28 @@
+import javax.swing.*;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
+ 
+public class MinMax {
+
+    public static void main(String [] args){
+        SortedSet<Integer> numbers = new TreeSet<Integer>();
+        int num = 0;
+
+        while(num != -99){
+            try{
+                num = Integer.parseInt(JOptionPane.showInputDialog(null, "Please enter an integer (-99 to stop)"));
+                if(num != -99){
+                    numbers.add(num);
+                }
+            } catch (NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null, "Please enter a number!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        int min = numbers.first();
+        int max = numbers.last();
+
+        JOptionPane.showMessageDialog(null, "Minimum number is " + min + "\n" + "Maximum number is " + max);
+    }
+}
