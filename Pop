@@ -1,0 +1,76 @@
+
+import java.util.Scanner;
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+
+public class Population {
+    public static void main(String[] args) {
+
+        DecimalFormat formatter = new DecimalFormat("###,###,###,###,###.00");
+        int startingNumberOfOrganism = 0, daysOverMultiplying = 0;
+        double averageDailyPopulationIncrease = -1, dailyPopulation, percentIncrease;
+
+        //Ask for startingNumberOfOrganisms.
+        //Validation: Don't accept numbers less than 2 organisms
+
+        while(startingNumberOfOrganism < 2){
+            try {
+                startingNumberOfOrganism = Integer.parseInt(JOptionPane.showInputDialog(null, "What is the starting number of organisms? (2 or more)"));
+                if(startingNumberOfOrganism < 2){
+                    JOptionPane.showMessageDialog(null, "Starting number of organisms must be 2 or more", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null, "Please enter a number", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        while(averageDailyPopulationIncrease < 0){
+            try{
+                averageDailyPopulationIncrease = Double.parseDouble(JOptionPane.showInputDialog(null, "What is the average daily population increase?(provide integer number, ie 50 for %50)"));
+                if(averageDailyPopulationIncrease < 0){
+                    JOptionPane.showMessageDialog(null, "Please enter a positive number!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }catch (NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null, "Please enter a positive number!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        while (daysOverMultiplying < 1) {
+            try {
+                daysOverMultiplying = Integer.parseInt(JOptionPane.showInputDialog(null, "Population Increase will occur over how many days?"));
+                if(daysOverMultiplying < 1){
+                    JOptionPane.showMessageDialog(null, "Please enter a positive integer", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null, "Please enter a positive integer", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+
+        //loop to display the size of the
+        //population for each day.
+
+        StringBuilder stringBuilder = new StringBuilder("Here are the results:").append("\n");
+        stringBuilder.append("Days     Number of Organisms").append("\n");
+        stringBuilder.append("----------------------------").append("\n");
+
+        int day = 0;
+
+        dailyPopulation = startingNumberOfOrganism;
+        percentIncrease = averageDailyPopulationIncrease / 100;
+
+        for (int x = 1; x <= daysOverMultiplying; x++) {
+            day++;
+            if (day > 1) {
+                dailyPopulation += (percentIncrease * dailyPopulation);
+                stringBuilder.append(day + "             " + formatter.format(dailyPopulation)).append("\n");
+            } else {
+                stringBuilder.append(day + "             " + formatter.format(dailyPopulation)).append("\n");
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, stringBuilder.toString());
+    }
+
+}
+ 
